@@ -49,7 +49,7 @@ async function buildOrigTranslations(trans_fname, orig2for, for2orig) {
  * @param: orig2for, a dict. The mapping between original words and translated words.
  */
 function translate(orig, orig2for) {
-  orig = orig.split('+');
+  orig = orig.split(' ');
   var translation = "";
   var foreign;
   orig.forEach(item => {
@@ -70,8 +70,9 @@ function translate(orig, orig2for) {
 
 app.use(express.static('public_html'))
 
-app.get('/translate/:type', (req, res) => {
-  res.send(e2s);
+app.get('/translate/:origText', (req, res) => {
+  let translated = translate(req.params.origText, e2s);
+  res.send(translated);
 })
 
 app.listen(port, () => console.log('App listening.'))

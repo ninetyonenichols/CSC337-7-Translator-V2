@@ -19,11 +19,16 @@ header {
   text-align: center;
 }
 
+h1 {
+  font-size: 50px;
+}
+
 .lang-area {
   width: 50%;
   height: 100%;
   float: left;
-  border: 1px solid black;
+  border: 5px solid black;
+  border-collapse: collapse;
   box-sizing: border-box;
   text-align: center;
 }
