@@ -1,0 +1,38 @@
+/*
+ * Author: Justin Nichols
+ * Class: CSC337
+ * Purpose: Adds style to index.html
+ */
+
+* {
+  margin: 0;  
+}
+
+html, body {
+  height: 100%;  
+}
+
+header {
+  padding: 20px 0;
+  height: 20%;
+  background-color: yellow;   
+  text-align: center;
+}
+
+.lang-area {
+  width: 50%;
+  height: 100%;
+  float: left;
+  border: 1px solid black;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.gui-elem {
+  padding: 20px 0; 
+}
+
+#content {
+  height: 80%;
+  background-color: gray;
+}
