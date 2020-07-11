@@ -20,10 +20,10 @@
     <div id="content">
       <div class="lang-area">
         <div class="gui-elem">
-          <textarea id="orig-text" rows="5" cols="40"></textarea>
+          <textarea id="orig-text" rows="5" cols="40" oninput="translate()"></textarea>
         </div>
         <div class="gui-elem">
-          <select name="original" id="original" onchange="translate()">
+          <select name="orig-lang" id="orig-lang" onchange="translate()">
             <option value="English">English</option>
             <option value="German">German</option>
             <option value="Spanish">Spanish</option>
@@ -32,10 +32,10 @@
       </div>
       <div class="lang-area">
         <div class="gui-elem">
-          <textarea id="foreign-text" rows="5" cols="40"></textarea>
+          <textarea id="foreign-text" rows="5" cols="40" oninput="translate()"></textarea>
         </div>
         <div class="gui-elem">
-          <select name="foreign" id="foreign">
+          <select name="for-lang" id="foreign-lang" onchange="translate()">
             <option value="English">English</option>
             <option value="German">German</option>
             <option value="Spanish">Spanish</option>
