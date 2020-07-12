@@ -11,6 +11,12 @@ const app = express()
 const host = '127.0.0.1'
 const port = 3000
 
+const lang2Abbr = {
+  "English":"e",
+  "German": "g",
+  "Spanish": "s"
+}
+
 e2g = {};
 e2s = {};
 g2e = {};
@@ -44,24 +50,27 @@ async function buildOrigTranslations(trans_fname, orig2for, for2orig) {
 }
 
 /*
- * This function translates a string.
- * @param: orig, a string. The string to be translated.
- * @param: orig2for, a dict. The mapping between original words and translated words.
+ * This function translates the input-string.
+ * @param: origLang, a string. The original language of the input-string.
+ * @param: foreignLang, a string. The language that the input-string will be 
+ *  translated to.
+ * @param: origText, a string. This is the input-string.
  */
-function translate(orig, orig2for) {
-  orig = orig.split(' ');
+function translate(origLang, foreignLang, origText) {
+  origText = origText.split(' ');
   var translation = "";
   var foreign;
-  orig.forEach(item => {
-    item = item.toLowerCase();
-    if (orig2for == 'g2s') {
-      let eng = g2e[item];
+  origText.forEach(word => {
+    word = word.toLowerCase();
+    if (origLang == "German" && foreignLang == "Spanish") {
+      let eng = g2e[word];
       foreign = e2s[eng]; 
-    } else if (orig2for == 's2g') {
-      let eng = s2e[item];
+    } else if (origLang == "Spanish" && foreignLang == "German") {
+      let eng = s2e[word];
       foreign = e2g[eng];
     } else {
-      foreign = eval(orig2for)[item];
+      let orig2for = `${lang2Abbr[origLang]}2${lang2Abbr[foreignLang]}`;
+      foreign = eval(orig2for)[word];
     }
     translation += foreign + ' ';
     })
@@ -70,8 +79,9 @@ function translate(orig, orig2for) {
 
 app.use(express.static('public_html'))
 
-app.get('/translate/:origText', (req, res) => {
-  let translated = translate(req.params.origText, e2s);
+app.get('/translate/:origLang/:foreignLang/:origText', (req, res) => {
+  let translated = translate(req.params.origLang, req.params.foreignLang, 
+    req.params.origText);
   res.send(translated);
 })
 
