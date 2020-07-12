@@ -15,7 +15,7 @@ html, body {
 header {
   padding: 20px 0;
   height: 20%;
-  background-color: yellow;   
+  background-color: gold;   
   text-align: center;
 }
 
@@ -39,5 +39,5 @@ h1 {
 
 #content {
   height: 80%;
-  background-color: gray;
+  background-color: silver;
 }
